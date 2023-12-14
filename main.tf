@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "rg" {
 
 resource "azurerm_container_registry" "acr" {
   name                = var.acr_name
-  resource_group_name = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = var.sku_type
 
@@ -66,7 +66,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "usernodepool" {
 }
 
 resource "azurerm_role_assignment" "role" {
-  principal_id                     = azurerm_kubernetes_cluster.akscluster.kubenet_identity[0].object_id
+  principal_id                     = azurerm_kubernetes_cluster.akscluster.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
   scope                            = azurerm_container_registry.acr.id
   skip_service_principal_aad_check = true

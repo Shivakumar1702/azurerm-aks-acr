@@ -39,8 +39,8 @@ variable "dns_name" {
 
 variable "upgrade_type" {
   type        = string
-  default     = "none"
-  description = "The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable. Omitting this field sets this value to none."
+  default     = "stable"
+  description = "The upgrade channel for this Kubernetes Cluster. Possible values are patch, rapid, node-image and stable."
 
 }
 
@@ -53,7 +53,7 @@ variable "sku_tier" {
 
 variable "default_node_pool_name" {
   type        = string
-  default     = "example-node-pool"
+  default     = "nodepool"
   description = "The name which should be used for the default Kubernetes Node Pool."
 
 }
@@ -102,14 +102,14 @@ variable "tags" {
 
 variable "user_node_pool_name" {
   type        = string
-  default     = "example-user-node-pool"
+  default     = "usernodepool"
   description = "Number of VMs in the user node pool."
 
 }
 
 variable "user_node_vm_size" {
   type        = string
-  default     = 1
+  default     = "Standard_B2s"
   description = "Number of VMs in the user node pool."
 
 }
